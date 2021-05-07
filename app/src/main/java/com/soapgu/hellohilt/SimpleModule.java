@@ -24,4 +24,10 @@ public class SimpleModule {
     public static IPrint provideAnotherIPrint(){
         return new TwoPrint();
     }
+
+
+    @Provides
+    public ILog provideILog(){
+        return new ConsoleLog();
+    }
 }

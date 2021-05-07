@@ -27,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     Map<String, IPrint> prints;
 
+    @Inject
+    ILog log;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,5 +42,12 @@ public class MainActivity extends AppCompatActivity {
         Logger.i( "Get SimpleExport-simpleExportTwo:%s",simpleExportTwo.toString() );
         Logger.i( "Print from print:%s",prints.get("One").output() );
         Logger.i( "Print from print:%s",prints.get("Two").output() );
+
+        if( log != null ){
+            log.Write( "Get ILog and write" );
+        }
+        else{
+            Logger.i( "ILog is null!!!" );
+        }
     }
 }
