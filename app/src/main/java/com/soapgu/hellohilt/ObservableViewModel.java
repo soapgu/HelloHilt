@@ -1,11 +1,18 @@
 package com.soapgu.hellohilt;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
 import androidx.databinding.Observable;
 import androidx.databinding.PropertyChangeRegistry;
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.AndroidViewModel;
 
-public abstract class ObservableViewModel extends ViewModel implements Observable {
-    private PropertyChangeRegistry callbacks = new PropertyChangeRegistry();
+public abstract class ObservableViewModel extends AndroidViewModel implements Observable {
+    private final PropertyChangeRegistry callbacks = new PropertyChangeRegistry();
+
+    public ObservableViewModel(@NonNull Application application) {
+        super(application);
+    }
 
     @Override
     public void addOnPropertyChangedCallback(
