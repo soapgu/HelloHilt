@@ -29,7 +29,7 @@ public abstract class ObservableViewModel extends AndroidViewModel implements Ob
     /**
      * Notifies observers that all properties of this instance have changed.
      */
-    void notifyChange() {
+    public void notifyChange() {
         callbacks.notifyCallbacks(this, 0, null);
     }
 
@@ -40,7 +40,7 @@ public abstract class ObservableViewModel extends AndroidViewModel implements Ob
      *
      * @param fieldId The generated BR id for the Bindable field.
      */
-    void notifyPropertyChanged(int fieldId) {
+    public void notifyPropertyChanged(int fieldId) {
         callbacks.notifyCallbacks(this, fieldId, null);
     }
 }

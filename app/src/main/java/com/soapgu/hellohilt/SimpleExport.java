@@ -10,4 +10,8 @@ public class SimpleExport {
     @Inject
     public SimpleExport()
     {}
+
+    public String getMessage() {
+        return  "this message from SimpleExport";
+    }
 }

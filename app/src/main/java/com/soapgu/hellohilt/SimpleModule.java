@@ -1,5 +1,6 @@
 package com.soapgu.hellohilt;
 
+import dagger.Lazy;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
@@ -27,7 +28,7 @@ public class SimpleModule {
 
 
     @Provides
-    public ILog provideILog(){
-        return new ConsoleLog();
+    public ILog provideILog( Lazy<SimpleExport> simpleExport ){
+        return new ConsoleLog(simpleExport);
     }
 }
