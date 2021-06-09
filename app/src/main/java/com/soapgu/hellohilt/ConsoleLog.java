@@ -3,8 +3,12 @@ package com.soapgu.hellohilt;
 
 import com.orhanobut.logger.Logger;
 
-import dagger.Lazy;
+import javax.inject.Singleton;
 
+import dagger.Lazy;
+import dagger.hilt.android.scopes.ActivityScoped;
+
+@ActivityScoped
 public class ConsoleLog implements ILog {
 
     Lazy<SimpleExport> simpleExport;

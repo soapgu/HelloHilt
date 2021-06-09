@@ -4,16 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import com.orhanobut.logger.Logger;
 import com.soapgu.hellohilt.databinding.ActivityMainBinding;
 
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import dagger.hilt.android.migration.OptionalInject;
 
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
     Map<String, IPrint> prints;
 
     @Inject
-    ILog log;
+    Provider<Optional<ILog>> log;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +49,15 @@ public class MainActivity extends AppCompatActivity {
         Logger.i( "Print from print:%s",prints.get("One").output() );
         Logger.i( "Print from print:%s",prints.get("Two").output() );
 
-        if( log != null ){
-            log.Write( "Get ILog and write" );
+
+        Optional<ILog> logSet = log.get();
+        if(  logSet.isPresent() ) {
+            Logger.i("Print from log:%s", logSet.get().toString());
         }
-        else{
-            Logger.i( "ILog is null!!!" );
+        else {
+            Logger.i( "log is not export" );
         }
+
+        Logger.i( "MODEL:%s",android.os.Build.MODEL );
     }
 }
