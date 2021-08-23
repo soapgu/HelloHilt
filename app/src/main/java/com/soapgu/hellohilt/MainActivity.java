@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     Provider<Optional<ILog>> log;
 
+    @Inject
+    Set<INullableItem> nullableItems;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
             Logger.i( "log is not export" );
         }
 
-        Logger.i( "MODEL:%s",android.os.Build.MODEL );
+        if( nullableItems != null && !nullableItems.isEmpty() ){
+            nullableItems.forEach( item -> Logger.i( "export INullableItem name:%s", item.getName() ) );
+        }
+        else{
+            Logger.i( "this collection is empty!" );
+        }
     }
 }

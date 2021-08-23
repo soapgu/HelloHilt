@@ -32,16 +32,20 @@ public class SimpleModule {
     }
 
 
-    //@ActivityScoped
-    //@Provides
+    @Provides
     public ILog provideILog(Lazy<SimpleExport> simpleExport ){
-        /*
-        ILog log = new ConsoleLog(simpleExport);
-        return Optional.of( log );
-
-        return  Optional.empty();
-        */
         return new ConsoleLog(simpleExport);
     }
 
+    @IntoSet
+    @Provides
+    public INullableItem provideFirst(){
+        return () -> "---first nullable item---";
+    }
+
+    @IntoSet
+    @Provides
+    public INullableItem provideSecond(){
+        return () -> "---second nullable item---";
+    }
 }
